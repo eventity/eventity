@@ -11,23 +11,23 @@
 <form action="" method="POST" id="form-map-search">
   <div>
     <span for="key-value">Topic</span>
-    <input type="text" name="key-value" value="Rock">
+    <input type="text"  id="key-value" value="Rock">
   </div>
   <div>
-    <span for="startDate">Start Date</span>
-    <input type="date" class="datepicker"  name="startDate">
+    <span for="start-date">Start Date</span>
+    <input type="date"    id="start-date">
   </div>
   <div>
-    <span for="endDate">End Date</span>
-    <input type="date" class="datepicker"  name="endDate">
+    <span for="end-date">End Date</span>
+    <input type="date"  name="end-date" id="end-date">
   </div>
   <div>
     <p class="choose">Radius</p>
     <p class="range-field">
-      <input type="range" id="slide" min="500" max="5000" value="1000" />
+      <input type="range" id="radius" min="500" max="5000" value="1000" />
     </p>
   </div>
-  <a class='btn-round'>Search</a>
+  <a class='btn-round' id="btn-search">Search</a>
 </form>
 {{!-- <form class="bar-circle">
   <p class="choose">Radius:</p>
