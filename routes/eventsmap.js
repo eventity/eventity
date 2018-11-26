@@ -21,10 +21,13 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const urlTicketMaster = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyValue}&geoPoint=ezjmu4tgh&radius=${radius}&unit=km&countryCode=ES&apikey=${process.env.TICKETMASTER_KEY}`;
   axios.get(urlTicketMaster)
     .then((ticketresponse) => {
-      console.log(ticketresponse.data._embedded.events);
-      // res.json({
-      //   ticketresponse.data._embedded.events,
-      // });
+      // console.log(ticketresponse.data._embedded.events);
+      console.log(convertToGeoJSON(ticketresponse.data._embedded.events));
+      const geojson = convertToGeoJSON(ticketresponse.data._embedded.events);
+
+      res.json({
+        geojson,
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -34,3 +37,40 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 // CAMBIO DE PRUEBAS PARA
 
 module.exports = router;
+
+
+function convertToGeoJSON(arr) {
+  let count = 1;
+
+  const geojson = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i]._embedded.venues[0].hasOwnProperty('location')) {
+      console.log('ENTRAAAAAAAAA');
+      geojson.features.push({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [arr[i]._embedded.venues[0].location.longitude, arr[i]._embedded.venues[0].location.latitude],
+        },
+        properties: {
+          id: count,
+          eventName: arr[i].name,
+          eventUrl: arr[i].url,
+          eventImage: arr[i].images[1].url,
+          // eventPriceMax: arr[i].priceRanges[0].max,
+          // eventPriceMin: arr[i].priceRanges[0].min,
+          eventPlaceName: arr[i]._embedded.venues[0].name,
+        },
+      });
+    }
+
+    count++;
+  }
+
+
+  return geojson;
+}
