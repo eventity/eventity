@@ -7,6 +7,7 @@
   font-family: 'Lato-Bold';
   src: url(/fonts/Lato/Lato-Bold.ttf);
 }
+
 body {
   padding: 0;
   margin: 0;
@@ -17,22 +18,24 @@ body {
 a {
   color: #00b7ff;
 }
+
 nav {
   background-color: transparent;
-  box-shadow: none!important;
-  padding:0px 2%;
+  box-shadow: none !important;
+  padding: 0px 2%;
 }
+
 nav ul a {
   color: black;
 }
 
-nav .brand-logo{
+nav .brand-logo {
   color: black;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 
 
-.form-container{
+.form-container {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -40,7 +43,8 @@ nav .brand-logo{
   align-items: center;
   flex-direction: column;
   background-image: url(/images/bg-bw.jpg);
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -48,15 +52,16 @@ nav .brand-logo{
   height: 30%;
   width: 30%;
 }
-#form-map-search{
-  margin:5px;
+
+#form-map-search {
+  margin: 5px;
   padding: 10px;
   display: flex;
   justify-content: space-around;
   /* align-content: center; */
 }
 
-.bar-circle{
+.bar-circle {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -68,6 +73,7 @@ nav .brand-logo{
   width: 100%;
   height: 75vh;
 }
+
 .marker {
   background-image: url('/images/mapbox-icon.png');
   background-size: cover;
@@ -76,6 +82,7 @@ nav .brand-logo{
   border-radius: 50%;
   cursor: pointer;
 }
+
 .mapboxgl-popup {
   max-width: 200px;
 }
@@ -83,10 +90,16 @@ nav .brand-logo{
 .mapboxgl-popup-content {
   text-align: center;
   font-family: Lato-Ligth;
+  overflow: scroll;
+  height: 20rem;
 }
 
-
-
+.mapboxgl-popup-content h3{
+  font-size: 2rem;
+}
+.pop-up{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
 
 /* FORM STYLES */
 
@@ -102,7 +115,7 @@ button:focus {
   color: rgba(255, 255, 255, 0.65);
 }
 
-::-webkit-input-placeholder .input-line:focus +::input-placeholder {
+::-webkit-input-placeholder .input-line:focus+::input-placeholder {
   color: #fff;
 }
 
@@ -155,6 +168,7 @@ button:focus {
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
 }
+
 .btn-round {
   text-align: center;
   width: 15%;
@@ -280,8 +294,8 @@ button:focus {
 }
 
 .overlay {
-  background: -webkit-linear-gradient(45deg,rgb(57,207,163), rgb(249,147,106));
-  background: linear-gradient(45deg,rgb(57,207,163), rgb(249,147,106));
+  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+  background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
   opacity: 0.85;
   filter: alpha(opacity=85);
   height: 560px;
@@ -296,6 +310,7 @@ button:focus {
     width: 100%;
     height: 100%;
   }
+
   .overlay {
     width: 100%;
     height: 100%;
@@ -303,5 +318,5 @@ button:focus {
 }
 
 input[type=range]+.thumb {
-background-color: #39cfa4;
+  background-color: #39cfa4;
 }

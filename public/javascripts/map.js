@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // bearing: 29,
   });
 
+
   document.getElementById('btn-search').onclick = function () {
     const keyValue = document.querySelector('#key-value').value;
     const startDate = document.querySelector('#start-date').value;
@@ -29,7 +30,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const geojson = geojsonData.data.geojson;
       console.log(geojson);
       // add markers to map
+
       geojson.features.forEach((marker) => {
+        const same = [];
+        geojson.features.forEach((subMarker) => {
+          const coordMain = marker.geometry.coordinates;
+          const coordSub = subMarker.geometry.coordinates;
+          const idMain = marker.properties.id;
+          const idSub = subMarker.properties.id;
+
+          if (coordMain[0] === coordSub[0] && coordMain[1] === coordSub[1] && idMain !== idSub) {
+            same.push(subMarker);
+          }
+        });
+
+        console.log('Eventos iguales: ', same);
+
+        let html = `<div class="pop-up"><h3>${marker.properties.eventName}</h3><p>${marker.properties.eventPlaceName}</p></div>`;
+
+        same.forEach((event) => {
+          html += `<div class="pop-up"><h3>${event.properties.eventName}</h3><p>${event.properties.eventPlaceName}</p></div>`;
+        });
+
+        console.log(html);
+
+
         // create a HTML element for each feature
         const el = document.createElement('div');
         el.className = 'marker';
@@ -40,8 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
           .setPopup(new mapboxgl.Popup({
             offset: 25,
           }) // add popups
-            .setHTML(`<h3>${marker.properties.eventName}</h3><p>${marker.properties.eventPlaceName}</p>`))
+            .setHTML(html))
           .addTo(map);
+        console.log(el);
       });
     })
       .catch((error) => {
