@@ -1,0 +1,21 @@
+<div class="form-container">
+  <div class='window'>
+    <div class='overlay'></div>
+    <form class='content' action="/auth/login" method="POST">
+      <div class='welcome'>EVENTITY</div>
+      <div class='subtitle'>Take your time. Search the events that best fits your choice.</div>
+      <div class='input-fields'>
+        <input type='text' placeholder='Username' name="username" class='input-line full-width'></input>
+        <input type='email' placeholder='Email' class='input-line full-width'></input>
+        <input type='password' placeholder='Password' name="password" class='input-line full-width'></input>
+      </div>
+      <div class='spacing'>or continue with <a class='highlight' href="/auth/signup">Signup</a></div>
+      <div><button class='ghost-round full-width'>Login</button></div>
+      {{#if message }}
+      <div class="error-message">{{ message }}</div>
+      {{/if}}
+      <p class="account-message">
+      </p>
+    </form>
+  </div>  
+</div>

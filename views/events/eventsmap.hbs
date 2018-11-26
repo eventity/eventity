@@ -1,0 +1,39 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">EVENTITY</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li> <a href="/auth/login">Login</a></li>
+      <li> <a href="/events/myevents">My Events</a></li>
+      <li> <a href="/auth/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<form action="" method="POST" id="form-map-search">
+  <div>
+    <span for="key-value">Topic</span>
+    <input type="text" name="key-value" value="Rock">
+  </div>
+  <div>
+    <span for="startDate">Start Date</span>
+    <input type="date" class="datepicker"  name="startDate">
+  </div>
+  <div>
+    <span for="endDate">End Date</span>
+    <input type="date" class="datepicker"  name="endDate">
+  </div>
+  <div>
+    <p class="choose">Radius</p>
+    <p class="range-field">
+      <input type="range" id="slide" min="500" max="5000" value="1000" />
+    </p>
+  </div>
+  <a class='btn-round'>Search</a>
+</form>
+{{!-- <form class="bar-circle">
+  <p class="choose">Radius:</p>
+  <p class="range-field">
+    <input type="range" id="slide" min="500" max="5000" value="1000" />
+  </p>
+  <a class='btn-round'>Button</a>
+</form> --}}
+<div id='map'></div>
