@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return `
           <div class="pop-up">
           <h1 class="event-name">Event: ${markProp.properties.eventName}</h1>
-          <p class="event-place-name">Place: ${markProp.properties.eventPlaceName}</p>
+          <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
           <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
           <span class="event-id">${markProp.properties.eventId}</span>
           <span class="event-lng">${markProp.geometry.coordinates[0]}</span>

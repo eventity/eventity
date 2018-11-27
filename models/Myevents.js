@@ -6,7 +6,7 @@ const myeventsSchema = new Schema(
   {
     ticketMasterId:String,
     name: String,
-    images: { type: String, default: url('') },
+    image: String,
     url: String,
     address: String,
     location: {

@@ -5,6 +5,7 @@ require('dotenv').config();
 const router = express.Router();
 const axios = require('axios');
 const ensureLogin = require('connect-ensure-login');
+const Myevents = require('../models/Myevents');
 
 router.get('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render('events/eventsmap');
@@ -73,8 +74,28 @@ function convertToGeoJSON(arr) {
 
 router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   console.log(req.body);
-  // req.user
-  res.json({ body:req.body.data });
+  const newEvent = new Myevents({
+    ticketMasterId: req.body.eventId,
+    name: req.body.eventName,
+    url: req.body.eventUrl,
+    location: {
+      longitude: req.body.eventLng,
+      latitude: req.body.eventLat,
+    },
+    placeName: req.body.eventPlaceName,
+    idUser: req.user._id,
+  });
+
+  newEvent.save()
+    .then((savedEvent) => {
+      console.log(savedEvent);
+      res.json({
+        body: req.body.data,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 
