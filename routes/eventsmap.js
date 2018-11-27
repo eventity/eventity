@@ -38,8 +38,6 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 // CAMBIO DE PRUEBAS PARA
 
-module.exports = router;
-
 
 function convertToGeoJSON(arr) {
   const geojson = {
@@ -60,7 +58,7 @@ function convertToGeoJSON(arr) {
           eventName: arr[i].name,
           eventUrl: arr[i].url,
           eventImage: arr[i].images[1].url,
-          // eventPriceMax: arr[i].priceRanges[0].max, MIRAR SI ESTAN VACÍOS EN ALGUNO
+          // eventPriceMax: arr[i].priceRanges[0].max,
           // eventPriceMin: arr[i].priceRanges[0].min,
           eventPlaceName: arr[i]._embedded.venues[0].name,
         },
@@ -71,3 +69,13 @@ function convertToGeoJSON(arr) {
 
   return geojson;
 }
+
+
+router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  console.log(req.body);
+  // req.user
+  res.json({ body:req.body.data });
+});
+
+
+module.exports = router;

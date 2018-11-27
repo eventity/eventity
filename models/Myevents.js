@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const myeventsSchema = new Schema(
   {
-    ticketMaterId:String,
+    ticketMasterId:String,
     name: String,
     images: { type: String, default: url('') },
     url: String,
@@ -14,7 +14,7 @@ const myeventsSchema = new Schema(
       latitude: String,
     },
     placeName:String,
-    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    idUser: { type: Schema.Types.ObjectId, ref: 'User' },
   },
   {
     timestamps: {

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom: 11, // starting zoom
     // bearing: 29,
   });
-  const canvas = map.getCanvasContainer();
+
   drawDragPoint();
 
   document.getElementById('btn-search').onclick = function () {
@@ -48,21 +48,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('Eventos iguales: ', same);
         // Generate Html for popup if one event in the same coord only one html generated, in case more events have the same coord write sevetal coordinates.
+
         generteHtml = function (markProp) {
-          return `<div class="pop-up"><h3>${markProp.eventName}</h3><p>${markProp.eventPlaceName}</p></div>`;
+          return `
+          <div class="pop-up">
+          <h1 class="event-name">Event: ${markProp.properties.eventName}</h1>
+          <p class="event-place-name">Place: ${markProp.properties.eventPlaceName}</p>
+          <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
+          <span class="event-id">${markProp.properties.eventId}</span>
+          <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
+          <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
+          <a class="fav-btn">Add to Favourite</a>
+          </div>`;
         };
-        let html = generteHtml(marker.properties);
+
+        // *********
+
+        let html = generteHtml(marker);
 
         same.forEach((event) => {
-          html += generteHtml(event.properties);
+          html += generteHtml(event);
         });
 
-        console.log(html);
 
         // create a HTML element for each feature
         const el = document.createElement('div');
         el.className = 'marker';
         // make a marker for each feature and add to the map
+
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
           .setPopup(new mapboxgl.Popup({
@@ -78,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function drawDragPoint() {
+    const canvas = map.getCanvasContainer();
     const geojson = {
       type: 'FeatureCollection',
       features: [{
@@ -167,6 +181,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const picker = document.querySelectorAll('.datepicker');
-  const instances = M.Datepicker.init(picker);
+  $('body').on('click', '.fav-btn', (e) => {
+    console.log($(e.currentTarget).parent().find('.event-lng')[0]);
+    const eventName = $(e.currentTarget)
+      .parent()
+      .find('.event-name')[0]
+      .innerHTML;
+    const eventPlaceName = $(e.currentTarget)
+      .parent()
+      .find('.event-place-name')[0]
+      .innerHTML;
+    const eventUrl = $(e.currentTarget)
+      .parent()
+      .find('.event-url')[0].getAttribute('href');
+    const eventLng = $(e.currentTarget)
+      .parent()
+      .find('.event-lng')[0].innerHTML;
+    const eventLat = $(e.currentTarget)
+      .parent()
+      .find('.event-lat')[0].innerHTML;
+    const eventId = $(e.currentTarget)
+      .parent()
+      .find('.event-id')[0]
+      .innerHTML;
+    $.ajax({
+      contentType: 'application/json',
+      dataType: 'json',
+      type: 'POST',
+      url: '/events/myevents',
+      data: JSON.stringify({
+        eventName: `${eventName}`,
+        eventPlaceName: `${eventPlaceName}`,
+        eventUrl: `${eventUrl}`,
+        eventLng: `${eventLng}`,
+        eventLat: `${eventLat}`,
+        eventId: `${eventId}`,
+      }),
+    }).done(() => {
+      console.log('Post received from back server');
+      $(e.currentTarget).css({
+        color: 'red',
+      });
+    });
+  });
 }, false);
