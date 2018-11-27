@@ -5,6 +5,7 @@ require('dotenv').config();
 const router = express.Router();
 const axios = require('axios');
 const ensureLogin = require('connect-ensure-login');
+const Myevents = require('../models/Myevents');
 
 router.get('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render('events/eventsmap');
@@ -38,12 +39,8 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 // CAMBIO DE PRUEBAS PARA
 
-module.exports = router;
-
 
 function convertToGeoJSON(arr) {
-  let count = 1;
-
   const geojson = {
     type: 'FeatureCollection',
     features: [],
@@ -58,20 +55,48 @@ function convertToGeoJSON(arr) {
           coordinates: [arr[i]._embedded.venues[0].location.longitude, arr[i]._embedded.venues[0].location.latitude],
         },
         properties: {
-          id: count,
+          eventId: arr[i].id,
           eventName: arr[i].name,
           eventUrl: arr[i].url,
           eventImage: arr[i].images[1].url,
-          // eventPriceMax: arr[i].priceRanges[0].max, MIRAR SI ESTAN VACÍOS EN ALGUNO
+          // eventPriceMax: arr[i].priceRanges[0].max,
           // eventPriceMin: arr[i].priceRanges[0].min,
           eventPlaceName: arr[i]._embedded.venues[0].name,
         },
       });
     }
-
-    count++;
   }
 
 
   return geojson;
 }
+
+
+router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  console.log(req.body);
+  const newEvent = new Myevents({
+    ticketMasterId: req.body.eventId,
+    name: req.body.eventName,
+    url: req.body.eventUrl,
+    location: {
+      longitude: req.body.eventLng,
+      latitude: req.body.eventLat,
+    },
+    placeName: req.body.eventPlaceName,
+    idUser: req.user._id,
+  });
+
+  newEvent.save()
+    .then((savedEvent) => {
+      console.log(savedEvent);
+      res.json({
+        body: req.body.data,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+
+module.exports = router;

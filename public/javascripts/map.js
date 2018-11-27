@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom: 11, // starting zoom
     // bearing: 29,
   });
-  const canvas = map.getCanvasContainer();
+
   drawDragPoint();
 
 
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
         geojson.features.forEach((subMarker) => {
           const coordMain = marker.geometry.coordinates;
           const coordSub = subMarker.geometry.coordinates;
-          const idMain = marker.properties.id;
-          const idSub = subMarker.properties.id;
+          const idMain = marker.properties.eventId;
+          const idSub = subMarker.properties.eventId;
 
           if (coordMain[0] === coordSub[0] && coordMain[1] === coordSub[1] && idMain !== idSub) {
             same.push(subMarker);
@@ -59,19 +59,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // console.log('Eventos iguales: ', same);
+        console.log('Eventos iguales: ', same);
+        // Generate Html for popup if one event in the same coord only one html generated, in case more events have the same coord write sevetal coordinates.
 
-        let html = `<div class="pop-up"><h3>${marker.properties.eventName}</h3><p>${marker.properties.eventPlaceName}</p></div>`;
+        generteHtml = function (markProp) {
+          return `
+          <div class="pop-up">
+          <h1 class="event-name">Event: ${markProp.properties.eventName}</h1>
+          <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
+          <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
+          <span class="event-id">${markProp.properties.eventId}</span>
+          <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
+          <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
+          <a class="fav-btn">Add to Favourite</a>
+          </div>`;
+        };
+
+        // *********
+
+        let html = generteHtml(marker);
 
         same.forEach((event) => {
-          html += `<div class="pop-up"><h3>${event.properties.eventName}</h3><p>${event.properties.eventPlaceName}</p></div>`;
+          html += generteHtml(event);
         });
 
-        // console.log(html);
 
         // create a HTML element for each feature
         const el = document.createElement('div');
         el.className = 'marker';
         // make a marker for each feature and add to the map
+
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
           .setPopup(new mapboxgl.Popup({
@@ -87,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function drawDragPoint() {
+    const canvas = map.getCanvasContainer();
     const geojson = {
       type: 'FeatureCollection',
       features: [{
@@ -203,6 +221,49 @@ const geolocateMe = () => {
 geolocateMe();
 
 
+  $('body').on('click', '.fav-btn', (e) => {
+    console.log($(e.currentTarget).parent().find('.event-lng')[0]);
+    const eventName = $(e.currentTarget)
+      .parent()
+      .find('.event-name')[0]
+      .innerHTML;
+    const eventPlaceName = $(e.currentTarget)
+      .parent()
+      .find('.event-place-name')[0]
+      .innerHTML;
+    const eventUrl = $(e.currentTarget)
+      .parent()
+      .find('.event-url')[0].getAttribute('href');
+    const eventLng = $(e.currentTarget)
+      .parent()
+      .find('.event-lng')[0].innerHTML;
+    const eventLat = $(e.currentTarget)
+      .parent()
+      .find('.event-lat')[0].innerHTML;
+    const eventId = $(e.currentTarget)
+      .parent()
+      .find('.event-id')[0]
+      .innerHTML;
+    $.ajax({
+      contentType: 'application/json',
+      dataType: 'json',
+      type: 'POST',
+      url: '/events/myevents',
+      data: JSON.stringify({
+        eventName: `${eventName}`,
+        eventPlaceName: `${eventPlaceName}`,
+        eventUrl: `${eventUrl}`,
+        eventLng: `${eventLng}`,
+        eventLat: `${eventLat}`,
+        eventId: `${eventId}`,
+      }),
+    }).done(() => {
+      console.log('Post received from back server');
+      $(e.currentTarget).css({
+        color: 'red',
+      });
+    });
+  });
 }, false);
 
 
