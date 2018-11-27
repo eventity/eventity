@@ -11,10 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // bearing: 29,
   });
 
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    trackUserLocation: true,
+  }));
+
   drawDragPoint();
 
 
-  
   // const addMarker = (title, position, map) => {
   //   return new google.maps.Marker({
   //     position,
@@ -24,13 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // }
 
 
-
-
   document.getElementById('btn-search').onclick = function () {
     const pointerLocation = pointerCoords;
     const keyValue = document.querySelector('#key-value').value;
-    const startDate = document.querySelector('#start-date').value;
-    const endDate = document.querySelector('#end-date').value;
+    let startDate = document.querySelector('#start-date').value;
+    startDate += 'T10:00:00Z';
+    let endDate = document.querySelector('#end-date').value;
+    endDate += 'T10:00:00Z';
     const radius = document.querySelector('#radius').value;
     const formData = {
       keyValue,
@@ -44,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then((geojsonData) => {
       const geojson = geojsonData.data.geojson;
       // add markers to map
-
+      console.log(geojson);
       geojson.features.forEach((marker) => {
         const same = [];
         geojson.features.forEach((subMarker) => {
@@ -194,33 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-//localite the user position
-
-
-const geolocateMe = () => {
-  let actualUserPosition={}
-   return new Promise( (resolve, reject) => {
-    
-     
-     if (navigator.geolocation) {
-   
-       navigator.geolocation.getCurrentPosition((position) => {
-         resolve(
-           actualUserPosition={
-           lng: position.coords.longitude,
-           lat: position.coords.latitude});
-           return actualUserPosition
-          
-       }, () => reject('Error in the geolocation service.'));
-     } else {
-       reject('Browser does not support geolocation.');
-     }
-   })
- }
-
-geolocateMe();
-
-
   $('body').on('click', '.fav-btn', (e) => {
     console.log($(e.currentTarget).parent().find('.event-lng')[0]);
     const eventName = $(e.currentTarget)
@@ -265,5 +244,3 @@ geolocateMe();
     });
   });
 }, false);
-
-

@@ -22,7 +22,13 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
     pointerLocation,
   } = req.body.formData;
   const geoPoint = Geohash.encode(pointerLocation.lat, pointerLocation.lng, 9);
-  const urlTicketMaster = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyValue}&geoPoint=${geoPoint}&radius=${radius}&unit=km&countryCode=ES&apikey=${process.env.TICKETMASTER_KEY}`;
+  let urlTicketMaster = '';
+  if (startDate === endDate) {
+    urlTicketMaster = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyValue}&geoPoint=${geoPoint}&radius=${radius}&unit=km&countryCode=ES&apikey=${process.env.TICKETMASTER_KEY}&startDateTime=${startDate}`;
+  } else {
+    urlTicketMaster = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyValue}&geoPoint=${geoPoint}&radius=${radius}&unit=km&countryCode=ES&apikey=${process.env.TICKETMASTER_KEY}&startDateTime=${startDate}&endDateTime=${endDate}`;
+  }
+
   axios.get(urlTicketMaster)
     .then((ticketresponse) => {
       // console.log(ticketresponse.data._embedded.events);
