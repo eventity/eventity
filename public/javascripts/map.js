@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         geojson.features.forEach((subMarker) => {
           const coordMain = marker.geometry.coordinates;
           const coordSub = subMarker.geometry.coordinates;
-          const idMain = marker.properties.id;
-          const idSub = subMarker.properties.id;
+          const idMain = marker.properties.eventId;
+          const idSub = subMarker.properties.eventId;
 
           if (coordMain[0] === coordSub[0] && coordMain[1] === coordSub[1] && idMain !== idSub) {
             same.push(subMarker);
@@ -47,11 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         console.log('Eventos iguales: ', same);
-
-        let html = `<div class="pop-up"><h3>${marker.properties.eventName}</h3><p>${marker.properties.eventPlaceName}</p></div>`;
+        // Generate Html for popup if one event in the same coord only one html generated, in case more events have the same coord write sevetal coordinates.
+        generteHtml = function (markProp) {
+          return `<div class="pop-up"><h3>${markProp.eventName}</h3><p>${markProp.eventPlaceName}</p></div>`;
+        };
+        let html = generteHtml(marker.properties);
 
         same.forEach((event) => {
-          html += `<div class="pop-up"><h3>${event.properties.eventName}</h3><p>${event.properties.eventPlaceName}</p></div>`;
+          html += generteHtml(event.properties);
         });
 
         console.log(html);

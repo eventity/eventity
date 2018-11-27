@@ -42,8 +42,6 @@ module.exports = router;
 
 
 function convertToGeoJSON(arr) {
-  let count = 1;
-
   const geojson = {
     type: 'FeatureCollection',
     features: [],
@@ -58,7 +56,7 @@ function convertToGeoJSON(arr) {
           coordinates: [arr[i]._embedded.venues[0].location.longitude, arr[i]._embedded.venues[0].location.latitude],
         },
         properties: {
-          id: count,
+          eventId: arr[i].id,
           eventName: arr[i].name,
           eventUrl: arr[i].url,
           eventImage: arr[i].images[1].url,
@@ -68,8 +66,6 @@ function convertToGeoJSON(arr) {
         },
       });
     }
-
-    count++;
   }
 
 

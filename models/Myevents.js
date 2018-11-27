@@ -1,25 +1,28 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const myeventsSchema = new Schema(
   {
+    ticketMaterId:String,
     name: String,
-    images: { type: String, default: String },
+    images: { type: String, default: url('') },
     url: String,
     address: String,
     location: {
       longitude: String,
-      latitude: String
+      latitude: String,
     },
-    reviews: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    placeName:String,
+    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
-    }
-  }
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  },
 );
 
-const Myevents = mongoose.model("Myevents", myeventsSchema);
+const Myevents = mongoose.model('Myevents', myeventsSchema);
 module.exports = Myevents;
