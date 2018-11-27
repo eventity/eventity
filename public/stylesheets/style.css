@@ -224,6 +224,14 @@ button:focus {
   transition: all .2s ease;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s !important;
+    transition-property: background-color, color !important;
+}
+
 .full-width {
   width: 100%;
 }

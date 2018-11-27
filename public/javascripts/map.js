@@ -13,6 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = map.getCanvasContainer();
   drawDragPoint();
 
+
+  
+  // const addMarker = (title, position, map) => {
+  //   return new google.maps.Marker({
+  //     position,
+  //     map,
+  //     title
+  //   });
+  // }
+
+
+
+
   document.getElementById('btn-search').onclick = function () {
     const pointerLocation = pointerCoords;
     const keyValue = document.querySelector('#key-value').value;
@@ -30,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
       formData,
     }).then((geojsonData) => {
       const geojson = geojsonData.data.geojson;
-      console.log(geojson);
       // add markers to map
 
       geojson.features.forEach((marker) => {
@@ -46,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        console.log('Eventos iguales: ', same);
+        // console.log('Eventos iguales: ', same);
 
         let html = `<div class="pop-up"><h3>${marker.properties.eventName}</h3><p>${marker.properties.eventPlaceName}</p></div>`;
 
@@ -54,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
           html += `<div class="pop-up"><h3>${event.properties.eventName}</h3><p>${event.properties.eventPlaceName}</p></div>`;
         });
 
-        console.log(html);
+        // console.log(html);
 
         // create a HTML element for each feature
         const el = document.createElement('div');
@@ -164,6 +176,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const picker = document.querySelectorAll('.datepicker');
-  const instances = M.Datepicker.init(picker);
+//localite the user position
+
+
+const geolocateMe = () => {
+  let actualUserPosition={}
+   return new Promise( (resolve, reject) => {
+    
+     
+     if (navigator.geolocation) {
+   
+       navigator.geolocation.getCurrentPosition((position) => {
+         resolve(
+           actualUserPosition={
+           lng: position.coords.longitude,
+           lat: position.coords.latitude});
+           return actualUserPosition
+          
+       }, () => reject('Error in the geolocation service.'));
+     } else {
+       reject('Browser does not support geolocation.');
+     }
+   })
+ }
+
+geolocateMe();
+
+
 }, false);
+
+
