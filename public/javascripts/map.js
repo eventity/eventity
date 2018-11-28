@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // bearing: 29,
   });
 
+
   map.addControl(new mapboxgl.GeolocateControl({
     positionOptions: {
       enableHighAccuracy: true,
@@ -110,6 +111,20 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function drawDragPoint() {
+    let  geocodeLongitude = -3.703790;
+    let  geocodeLatitude = 40.416775;
+    navigator.geolocation.getCurrentPosition(
+      (success) => {
+        /* Location tracking code */
+        geocodeLongitude = success.coords.longitude;
+        geocodeLatitude = success.coords.latitude;
+      },
+      (failure) => {
+        if (failure.message.indexOf('Only secure origins are allowed') == 0) {
+          alert('Only secure origins are allowed by your browser.');
+        }
+      },
+    );
     const canvas = map.getCanvasContainer();
     const geojson = {
       type: 'FeatureCollection',
@@ -117,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [-3.703790, 40.416775],
+          coordinates: [geocodeLongitude, geocodeLatitude],
         },
       }],
     };
