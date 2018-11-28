@@ -1,8 +1,7 @@
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiZGRpZXpyIiwiYSI6ImNqb3ZuMGZ3cjFqa2YzcWxrYjBtNjJzaG4ifQ.cCFZkl39Hov3D-Ujeq74Cg';
 document.addEventListener('DOMContentLoaded', () => {
   let pointerCoords = '';
   const coordinates = document.getElementById('coordinates');
-  mapboxgl.accessToken = MAPBOX_TOKEN;
+  mapboxgl.accessToken = token;
   const map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
