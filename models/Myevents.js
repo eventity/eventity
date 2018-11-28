@@ -8,6 +8,8 @@ const myeventsSchema = new Schema(
     name: String,
     image: String,
     url: String,
+    date:String,
+    time:String,
     address: String,
     location: {
       longitude: String,

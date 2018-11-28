@@ -13,7 +13,7 @@ router.get('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 });
 // https://app.ticketmaster.com/discovery/v2/events.json?keyword=rock&geoPoint=ezjmu4tgh&radius=8&unit=km&countryCode=ES&apikey=zM7ECwQhJETmF6sI9PUadItdWJPpCJPX
 router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  // Get data from the form in the front
+  // Get data from the form in the front to search data in ticjer master
   console.log(req.body.formData);
   const {
     keyValue,
@@ -29,7 +29,7 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   } else {
     urlTicketMaster = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyValue}&geoPoint=${geoPoint}&radius=${radius}&unit=km&countryCode=ES&apikey=${process.env.TICKETMASTER_KEY}&startDateTime=${startDate}&endDateTime=${endDate}`;
   }
-
+  // GET data from api Ticketmaster
   axios.get(urlTicketMaster)
     .then((ticketresponse) => {
       // console.log(ticketresponse.data._embedded.events);
@@ -66,9 +66,10 @@ function convertToGeoJSON(arr) {
           eventName: arr[i].name,
           eventUrl: arr[i].url,
           eventImage: arr[i].images[1].url,
-          // eventPriceMax: arr[i].priceRanges[0].max,
-          // eventPriceMin: arr[i].priceRanges[0].min,
+          // eventPrice: arr[i].priceRanges[0].min,
           eventPlaceName: arr[i]._embedded.venues[0].name,
+          eventDate: arr[i].dates.start.localDate,
+          eventTime: arr[i].dates.start.localTime,
         },
       });
     }
@@ -86,6 +87,8 @@ router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
     name: req.body.eventName,
     image: req.body.eventImg,
     url: req.body.eventUrl,
+    date:req.body.eventDate,
+    time: req.body.eventTime,
     location: {
       longitude: req.body.eventLng,
       latitude: req.body.eventLat,

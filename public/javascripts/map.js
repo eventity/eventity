@@ -70,14 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
         generteHtml = function (markProp) {
           return `
           <div class="pop-up">
-          <h1 class="event-name">Event: ${markProp.properties.eventName}</h1>
-          <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
-          <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
-          <span class="event-id">${markProp.properties.eventId}</span>
-          <img src="${markProp.properties.eventImage}" class="event-img">
-          <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
-          <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
-          <a class="fav-btn">Add to Favourite</a>
+            <h1 class="event-name">Event: ${markProp.properties.eventName}</h1>
+            <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
+            <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
+            <span class="event-price">${markProp.properties.eventPrice}€</span>
+            <span class="event-date">${markProp.properties.eventDate}</span>
+            <span class="event-time">${markProp.properties.eventTime}</span>
+            <span class="event-id">${markProp.properties.eventId}</span>
+            <img src="${markProp.properties.eventImage}" class="event-img">
+            <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
+            <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
+            <a class="fav-btn">Add to Favourite</a>
           </div>`;
         };
 
@@ -242,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Get values from pop up cause we dont have DOM element to click till popup is shown
   $('body').on('click', '.fav-btn', (e) => {
     console.log($(e.currentTarget).parent().find('.event-lng')[0]);
     const eventName = $(e.currentTarget)
@@ -255,6 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const eventUrl = $(e.currentTarget)
       .parent()
       .find('.event-url')[0].getAttribute('href');
+    const eventDate = $(e.currentTarget)
+      .parent()
+      .find('.event-date')[0].innerHTML;
+    const eventTime = $(e.currentTarget)
+      .parent()
+      .find('.event-time')[0].innerHTML;
     const eventImg = $(e.currentTarget)
       .parent()
       .find('.event-img')[0].getAttribute('src');
@@ -277,6 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
         eventName: `${eventName}`,
         eventPlaceName: `${eventPlaceName}`,
         eventUrl: `${eventUrl}`,
+        eventDate: `${eventDate}`,
+        eventTime: `${eventTime}`,
         eventImg: `${eventImg}`,
         eventLng: `${eventLng}`,
         eventLat: `${eventLat}`,
