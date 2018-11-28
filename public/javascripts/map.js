@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // console.log('Eventos iguales: ', same);
-        console.log('Eventos iguales: ', same);
         // Generate Html for popup if one event in the same coord only one html generated, in case more events have the same coord write sevetal coordinates.
 
         generteHtml = function (markProp) {
@@ -218,7 +217,7 @@ const geolocateMe = () => {
    })
  }
 
-geolocateMe();
+console.log(geolocateMe());
 
 
   $('body').on('click', '.fav-btn', (e) => {
