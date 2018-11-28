@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const Geohash = require('geo-hash');
-require('dotenv').config();
+
 
 const router = express.Router();
 const axios = require('axios');
@@ -8,7 +9,7 @@ const ensureLogin = require('connect-ensure-login');
 const Myevents = require('../models/Myevents');
 
 router.get('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  res.render('events/eventsmap');
+  res.render('events/eventsmap', { TOKEN_ENV: process.env.MAPBOX_TOKEN });
 });
 // https://app.ticketmaster.com/discovery/v2/events.json?keyword=rock&geoPoint=ezjmu4tgh&radius=8&unit=km&countryCode=ES&apikey=zM7ECwQhJETmF6sI9PUadItdWJPpCJPX
 router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
