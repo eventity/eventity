@@ -68,6 +68,30 @@ nav .brand-logo {
 
 }
 
+/*calendar styles*/
+.datepicker-date-display{
+  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+  background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+  opacity: 0.85;
+
+}
+.is-selected{
+  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+  background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+  opacity: 0.85;
+}
+
+/*button radio style*/
+/* span.active{
+  color:red;
+} */
+input[type=range]:before{
+background: red;
+}
+input[type=range]+.thumb{
+  background-color:red
+}
+
 /* MAP STYLES */
 #map {
   width: 100%;
