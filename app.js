@@ -87,7 +87,7 @@ app.use('/auth', require('./routes/auth'));
 
 app.use('/events', require('./routes/eventsmap'));
 
-/* app.use('/events', require('./routes/myevents')); */
+ app.use('/events', require('./routes/myevents')); 
 
 
 module.exports = app;

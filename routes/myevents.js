@@ -7,4 +7,5 @@ router.get('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render('events/myevents');
 });
 
+
 module.exports = router;
