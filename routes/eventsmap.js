@@ -84,6 +84,7 @@ router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const newEvent = new Myevents({
     ticketMasterId: req.body.eventId,
     name: req.body.eventName,
+    image: req.body.eventImg,
     url: req.body.eventUrl,
     location: {
       longitude: req.body.eventLng,

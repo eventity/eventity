@@ -143,6 +143,30 @@ input[type=range]+.thumb{
   border-radius: 3px;
   display: none;
 }
+
+/* CARD EVENTS STYLE */
+
+.cards-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 22vw;
+}
+
+.card-container{
+  width: 450px;
+  margin: 30px;
+}
+.sidenav{
+  width: 22vw;
+}
+
+
+.event-img{
+  height:150px;
+  width:auto;
+}
+
 /* FORM STYLES */
 
 input {

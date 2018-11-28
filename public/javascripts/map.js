@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
           <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
           <span class="event-id">${markProp.properties.eventId}</span>
+          <img src="${markProp.properties.eventImage}" class="event-img">
           <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
           <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
           <a class="fav-btn">Add to Favourite</a>
@@ -109,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function drawDragPoint() {
-    let  geocodeLongitude = -3.703790;
-    let  geocodeLatitude = 40.416775;
+    let geocodeLongitude = -3.703790;
+    let geocodeLatitude = 40.416775;
     navigator.geolocation.getCurrentPosition(
       (success) => {
         /* Location tracking code */
@@ -254,6 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const eventUrl = $(e.currentTarget)
       .parent()
       .find('.event-url')[0].getAttribute('href');
+    const eventImg = $(e.currentTarget)
+      .parent()
+      .find('.event-img')[0].getAttribute('src');
     const eventLng = $(e.currentTarget)
       .parent()
       .find('.event-lng')[0].innerHTML;
@@ -273,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eventName: `${eventName}`,
         eventPlaceName: `${eventPlaceName}`,
         eventUrl: `${eventUrl}`,
+        eventImg: `${eventImg}`,
         eventLng: `${eventLng}`,
         eventLat: `${eventLat}`,
         eventId: `${eventId}`,
