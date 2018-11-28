@@ -116,6 +116,34 @@ document.addEventListener('DOMContentLoaded', () => {
         /* Location tracking code */
         geocodeLongitude = success.coords.longitude;
         geocodeLatitude = success.coords.latitude;
+        console.log(geocodeLongitude);
+        console.log(geocodeLatitude);
+        map.removeLayer('point');
+        map.removeSource('point');
+
+        const geojson2 = {
+          type: 'FeatureCollection',
+          features: [{
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [geocodeLongitude, geocodeLatitude],
+            },
+          }],
+        };
+        map.addSource('point', {
+          type: 'geojson',
+          data: geojson2,
+        });
+        map.addLayer({
+          id: 'point',
+          type: 'circle',
+          source: 'point',
+          paint: {
+            'circle-radius': 8,
+            'circle-color': '#6acda7',
+          },
+        });
       },
       (failure) => {
         if (failure.message.indexOf('Only secure origins are allowed') == 0) {
