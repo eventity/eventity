@@ -32,6 +32,11 @@ nav ul a {
 nav .brand-logo {
   color: black;
   font-size: 1.5rem;
+  
+}
+#logo{
+  height: 70px;
+  margin: 6px 20px;
 }
 
 .form-container {
@@ -144,11 +149,11 @@ input[type=range]::-ms-thumb {
   border-radius: 3px;
   display: none;
 }
-/* Map for each events */
- #mymap{
-  width: 100%;
-  height: 70%;
+/* User myevents */
+#user-bg{
+  height: 22vw;
 }
+
 
 /* CARD EVENTS STYLE */
 

@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   let pointerCoords = '';
-  const initialDefaultCoords = { lng:-3.703790, lat: 40.416775 };
-  let geocodeLocation = { lng:0, lat: 0 };
+  const initialDefaultCoords = {
+    lng: -3.703790,
+    lat: 40.416775,
+  };
+  let geocodeLocation = {
+    lng: 0,
+    lat: 0,
+  };
   const coordinates = document.getElementById('coordinates');
+  // let markerEvent = null;
   mapboxgl.accessToken = token;
   const map = new mapboxgl.Map({
     container: 'map', // container id
@@ -33,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   document.getElementById('btn-search').onclick = function () {
+  /*   if (markerEvent != null) {
+      console.log(markerEvent);
+      console.log('ENTRAS EN MARKER EVENTS');
+      markerEvent.remove();
+    }
+ */
     // If search without moving the point of geolocate automatic then location by defaults
     let searchLocation = initialDefaultCoords;
     // If geolocated with browser then search in gps coordintes
@@ -112,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.className = 'marker';
         // make a marker for each feature and add to the map
 
-        new mapboxgl.Marker(el)
+        markerEvent = new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
           .setPopup(new mapboxgl.Popup({
             offset: 25,
@@ -132,7 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
         /* Location tracking code */
         geocodeLongitude = success.coords.longitude;
         geocodeLatitude = success.coords.latitude;
-        geocodeLocation = { lng:geocodeLongitude, lat: geocodeLatitude };
+        geocodeLocation = {
+          lng: geocodeLongitude,
+          lat: geocodeLatitude,
+        };
         console.log(geocodeLongitude);
         console.log(geocodeLatitude);
 
@@ -159,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
           source: 'point',
           paint: {
             'circle-radius': 8,
-            'circle-color': '#6acda7',
+            'circle-color': '#e68260',
           },
         });
       },
