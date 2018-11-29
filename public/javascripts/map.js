@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   let pointerCoords = '';
+  const initialDefaultCoords = { lng:-3.703790, lat: 40.416775 };
+  let geocodeLocation = { lng:0, lat: 0 };
   const coordinates = document.getElementById('coordinates');
   mapboxgl.accessToken = token;
   const map = new mapboxgl.Map({
@@ -31,7 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   document.getElementById('btn-search').onclick = function () {
-    const pointerLocation = pointerCoords;
+    // If search without moving the point of geolocate automatic then location by defaults
+    let searchLocation = initialDefaultCoords;
+    // If geolocated with browser then search in gps coordintes
+    if (geocodeLocation.lng !== 0 && geocodeLocation.lat !== 0) {
+      console.log('***************++ENTRA EN GPS');
+      searchLocation = geocodeLocation;
+    }
+    if (pointerCoords) {
+      console.log('***************++ENTRA EN PUNTERO');
+      // If pointer is moved to a position by click or by geolocate then take those coordinates
+      searchLocation = pointerCoords;
+    }
+
     const keyValue = document.querySelector('#key-value').value;
     let startDate = document.querySelector('#start-date').value;
     startDate += 'T10:00:00Z';
@@ -43,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
       startDate,
       endDate,
       radius,
-      pointerLocation,
+      searchLocation,
     };
     axios.post('/events/eventsmap', {
       formData,
@@ -113,15 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function drawDragPoint() {
-    let geocodeLongitude = -3.703790;
-    let geocodeLatitude = 40.416775;
     navigator.geolocation.getCurrentPosition(
       (success) => {
         /* Location tracking code */
         geocodeLongitude = success.coords.longitude;
         geocodeLatitude = success.coords.latitude;
+        geocodeLocation = { lng:geocodeLongitude, lat: geocodeLatitude };
         console.log(geocodeLongitude);
         console.log(geocodeLatitude);
+
         map.removeLayer('point');
         map.removeSource('point');
 
@@ -155,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       },
     );
+    //  By default paint point in initial coordinates
     const canvas = map.getCanvasContainer();
     const geojson = {
       type: 'FeatureCollection',
@@ -162,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [geocodeLongitude, geocodeLatitude],
+          coordinates: [initialDefaultCoords.lng, initialDefaultCoords.lat],
         },
       }],
     };
@@ -208,18 +223,18 @@ document.addEventListener('DOMContentLoaded', () => {
         source: 'point',
         paint: {
           'circle-radius': 8,
-          'circle-color': '#6acda7',
+          'circle-color': '#e68260',
         },
       });
 
       // When the cursor enters a feature in the point layer, prepare for dragging.
       map.on('mouseenter', 'point', () => {
-        map.setPaintProperty('point', 'circle-color', '#e68260');
+        map.setPaintProperty('point', 'circle-color', '#6acda7');
         canvas.style.cursor = 'move';
       });
 
       map.on('mouseleave', 'point', () => {
-        map.setPaintProperty('point', 'circle-color', '#6acda7');
+        map.setPaintProperty('point', 'circle-color', '#e68260');
         canvas.style.cursor = '';
       });
 

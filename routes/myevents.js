@@ -8,10 +8,8 @@ const Myevents = require('../models/Myevents');
 router.get('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const userId = req.user._id;
   const user = req.user;
-  console.log('------------', userId);
   Myevents.find({ idUser: userId })
     .then((myEvents) => {
-      console.log('------------', myEvents);
       res.render('events/myevents', { myEvents, user });
     })
     .catch((error) => {

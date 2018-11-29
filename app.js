@@ -81,6 +81,10 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
 
+app.use((req, res, next) => {
+  res.locals.mapboxToken = process.env.MAPBOX_TOKEN;
+  next();
+});
 
 app.use('/', require('./routes/index'));
 

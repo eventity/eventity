@@ -9,7 +9,7 @@ const ensureLogin = require('connect-ensure-login');
 const Myevents = require('../models/Myevents');
 
 router.get('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  res.render('events/eventsmap', { TOKEN_ENV: process.env.MAPBOX_TOKEN });
+  res.render('events/eventsmap');
 });
 // https://app.ticketmaster.com/discovery/v2/events.json?keyword=rock&geoPoint=ezjmu4tgh&radius=8&unit=km&countryCode=ES&apikey=zM7ECwQhJETmF6sI9PUadItdWJPpCJPX
 router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
@@ -20,9 +20,9 @@ router.post('/eventsmap', ensureLogin.ensureLoggedIn(), (req, res, next) => {
     startDate,
     endDate,
     radius,
-    pointerLocation,
+    searchLocation,
   } = req.body.formData;
-  const geoPoint = Geohash.encode(pointerLocation.lat, pointerLocation.lng, 9);
+  const geoPoint = Geohash.encode(searchLocation.lat, searchLocation.lng, 9);
   let urlTicketMaster = '';
   if (startDate === endDate) {
     urlTicketMaster = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyValue}&geoPoint=${geoPoint}&radius=${radius}&unit=km&countryCode=ES&apikey=${process.env.TICKETMASTER_KEY}&startDateTime=${startDate}`;
