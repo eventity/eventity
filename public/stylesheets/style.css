@@ -166,7 +166,14 @@ input[type=range]::-ms-thumb {
   height:150px;
   width:auto;
 }
+.buy-or-delete{
+  display: flex;
+  justify-content: space-between;
+}
+.delete-event-link{
+  color:red;
 
+}
 /* FORM STYLES */
 
 input {
