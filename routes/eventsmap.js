@@ -66,6 +66,8 @@ function convertToGeoJSON(arr) {
           eventName: arr[i].name,
           eventUrl: arr[i].url,
           eventImage: arr[i].images[1].url,
+          eventAddress :arr[i]._embedded.venues[0].address.line1,
+          // eventVideo :arr[i]._embedded.attractions[0].externalLinks.youtube,
           // eventPrice: arr[i].priceRanges[0].min,
           eventPlaceName: arr[i]._embedded.venues[0].name,
           eventDate: arr[i].dates.start.localDate,
@@ -88,6 +90,7 @@ router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
     image: req.body.eventImg,
     url: req.body.eventUrl,
     date:req.body.eventDate,
+    address:req.body.eventAddress,
     time: req.body.eventTime,
     location: {
       longitude: req.body.eventLng,

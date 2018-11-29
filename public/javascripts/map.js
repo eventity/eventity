@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  let markers = [];
   let pointerCoords = '';
   const initialDefaultCoords = {
     lng: -3.703790,
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lat: 0,
   };
   const coordinates = document.getElementById('coordinates');
-  // let markerEvent = null;
+
   mapboxgl.accessToken = token;
   const map = new mapboxgl.Map({
     container: 'map', // container id
@@ -30,22 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
   drawDragPoint();
 
 
-  // const addMarker = (title, position, map) => {
-  //   return new google.maps.Marker({
-  //     position,
-  //     map,
-  //     title
-  //   });
-  // }
-
-
   document.getElementById('btn-search').onclick = function () {
-  /*   if (markerEvent != null) {
-      console.log(markerEvent);
-      console.log('ENTRAS EN MARKER EVENTS');
-      markerEvent.remove();
-    }
- */
+    markers.forEach(m => m.remove());
+    markers = [];
     // If search without moving the point of geolocate automatic then location by defaults
     let searchLocation = initialDefaultCoords;
     // If geolocated with browser then search in gps coordintes
@@ -104,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="event-date">${markProp.properties.eventDate}</span>
             <span class="event-time">${markProp.properties.eventTime}</span>
             <span class="event-id">${markProp.properties.eventId}</span>
+            <span class="event-address">${markProp.properties.eventAddress}</span>
             <img src="${markProp.properties.eventImage}" class="event-img">
             <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
             <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
@@ -125,13 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
         el.className = 'marker';
         // make a marker for each feature and add to the map
 
-        markerEvent = new mapboxgl.Marker(el)
+        const m = new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
           .setPopup(new mapboxgl.Popup({
             offset: 25,
           }) // add popups
             .setHTML(html))
           .addTo(map);
+        markers.push(m);
       });
     })
       .catch((error) => {
@@ -278,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get values from pop up cause we dont have DOM element to click till popup is shown
   $('body').on('click', '.fav-btn', (e) => {
-    console.log($(e.currentTarget).parent().find('.event-lng')[0]);
+    console.log($(e.currentTarget).parent().find('.event-adress')[0]);
     const eventName = $(e.currentTarget)
       .parent()
       .find('.event-name')[0]
@@ -309,6 +299,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .parent()
       .find('.event-id')[0]
       .innerHTML;
+    const eventAddress = $(e.currentTarget)
+      .parent()
+      .find('.event-address')[0]
+      .innerHTML;
     $.ajax({
       contentType: 'application/json',
       dataType: 'json',
@@ -324,11 +318,12 @@ document.addEventListener('DOMContentLoaded', () => {
         eventLng: `${eventLng}`,
         eventLat: `${eventLat}`,
         eventId: `${eventId}`,
+        eventAddress: `${eventAddress}`,
       }),
     }).done(() => {
       console.log('Post received from back server');
       $(e.currentTarget).css({
-        color: 'red',
+        color: '#e68260',
       });
     });
   });
