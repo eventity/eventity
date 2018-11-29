@@ -11,7 +11,7 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lato-Light";
+  font-family: 'Lato-Ligth';
 
 }
 
@@ -76,22 +76,22 @@ nav .brand-logo {
 
 }
 .is-selected{
-  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
-  background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
-  opacity: 0.85;
+  background-color: #6acda7 !important; 
+}
+.btn-flat{
+  color: #6acda7 !important; 
 }
 
-/*button radio style*/
-/* span.active{
-  color:red;
-} */
-input[type=range]:before{
-background: red;
-}
-input[type=range]+.thumb{
-  background-color:red
-}
 
+input[type=range]::-webkit-slider-thumb {
+  background-color: #6acda7;
+}
+input[type=range]::-moz-range-thumb {
+  background-color: #6acda7;
+}
+input[type=range]::-ms-thumb {
+  background-color: #6acda7;
+}
 /* MAP STYLES */
 #map {
   width: 100%;
