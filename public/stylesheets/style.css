@@ -32,11 +32,16 @@ nav ul a {
 nav .brand-logo {
   color: black;
   font-size: 1.5rem;
-  
+
 }
-#logo{
-  height: 70px;
+
+#logo {
+  height: 50px;
   margin: 6px 20px;
+}
+#logo-text{
+  color: Black;
+  margin: 67px;
 }
 
 .form-container {
@@ -73,31 +78,34 @@ nav .brand-logo {
 
 /*calendar styles*/
 .datepicker-date-display {
-  background: -webkit-linear-gradient(
-    45deg,
+  background: -webkit-linear-gradient(45deg,
     rgb(57, 207, 163),
-    rgb(249, 147, 106)
-  );
+    rgb(249, 147, 106));
   background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
   opacity: 0.85;
 }
-.is-selected{
-  background-color: #6acda7 !important; 
+
+.is-selected {
+  background-color: #6acda7 !important;
 }
-.btn-flat{
-  color: #6acda7 !important; 
+
+.btn-flat {
+  color: #6acda7 !important;
 }
 
 
 input[type=range]::-webkit-slider-thumb {
   background-color: #6acda7;
 }
+
 input[type=range]::-moz-range-thumb {
   background-color: #6acda7;
 }
+
 input[type=range]::-ms-thumb {
   background-color: #6acda7;
 }
+
 /* MAP STYLES */
 #map {
   width: 100%;
@@ -114,12 +122,14 @@ input[type=range]::-ms-thumb {
 }
 
 .mapboxgl-popup {
-  max-width: 200px;
+  max-width: 250px;
 }
 
 .mapboxgl-popup-content {
+  width: 250px;
   text-align: center;
   font-family: Lato-Ligth;
+  font-size: 1rem;
   overflow: scroll;
   height: 20rem;
 }
@@ -130,12 +140,28 @@ input[type=range]::-ms-thumb {
 .pop-up {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
+.event-url{
+  margin-left: 30px;
+}
+.fav-btn{
+  margin: 0px 100px;
+}
+/* .fav-btn:link{
+ color:gray;
+} */
+
+
 .pop-up h1 {
-  font-size: 2rem;
+  font-size: 1.3rem;
+  font-family:'Lato-bold';
 }
-.pop-up p {
-  font-size: 1.5rem;
+
+.event-place-name {
+  font-size: 1.2rem;
+  font-family:'Lato-bold';
+
 }
+
 .coordinates {
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
@@ -149,9 +175,16 @@ input[type=range]::-ms-thumb {
   border-radius: 3px;
   display: none;
 }
+
 /* User myevents */
-#user-bg{
-  height: 22vw;
+#user-bg {
+  height: 15vw;
+}
+#title-card{
+  font-size: 18px!important
+}
+#image-card{
+  height: 253px;
 }
 
 
@@ -168,9 +201,11 @@ input[type=range]::-ms-thumb {
   width: 450px;
   margin: 30px;
 }
+
 .sidenav {
   width: 22vw;
 }
+
 #btn-prueba {
   right: 5px;
   position: absolute;
@@ -178,30 +213,36 @@ input[type=range]::-ms-thumb {
 
 .event-img {
   height: 150px;
-  width: auto;
+  width: 225px;
+  border-radius: 3px;
 }
-.information{
-  display:flex;
+
+.information {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
-.information span{
+
+.information span {
   height: 50px;
   font-weight: bold;
 }
-.buy-or-delete{
+
+.buy-or-delete {
   display: flex;
   justify-content: space-between;
 }
-.delete-event-link{
-  color:red;
+
+.delete-event-link {
+  color: red;
   cursor: pointer;
 
 }
 
-.buy-event-link{
-  color:#6acda7; 
+.buy-event-link {
+  color: #6acda7;
 }
+
 /* FORM STYLES */
 
 input {
@@ -216,7 +257,7 @@ button:focus {
   color: rgba(255, 255, 255, 0.65);
 }
 
-::-webkit-input-placeholder .input-line:focus + ::input-placeholder {
+::-webkit-input-placeholder .input-line:focus+ ::input-placeholder {
   color: #fff;
 }
 
@@ -402,11 +443,9 @@ input:-webkit-autofill:active {
 }
 
 .overlay {
-  background: -webkit-linear-gradient(
-    45deg,
+  background: -webkit-linear-gradient(45deg,
     rgb(57, 207, 163),
-    rgb(249, 147, 106)
-  );
+    rgb(249, 147, 106));
   background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
   opacity: 0.85;
   filter: alpha(opacity=85);
@@ -428,11 +467,11 @@ input:-webkit-autofill:active {
   }
 }
 
-input[type="range"] + .thumb {
+input[type="range"]+.thumb {
   background-color: #39cfa4;
 }
 
-.event-id {
+.invisible {
   visibility: hidden;
   opacity: 0;
 }

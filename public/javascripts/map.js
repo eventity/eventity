@@ -84,20 +84,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         generteHtml = function (markProp) {
           return `
-          <div class="pop-up">
-            <h1 class="event-name">${markProp.properties.eventName}</h1>
-            <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
-            <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
-            <span class="event-price">${markProp.properties.eventPrice}€</span>
-            <span class="event-date">${markProp.properties.eventDate}</span>
-            <span class="event-time">${markProp.properties.eventTime}</span>
-            <span class="event-id">${markProp.properties.eventId}</span>
-            <span class="event-address">${markProp.properties.eventAddress}</span>
-            <img src="${markProp.properties.eventImage}" class="event-img">
-            <span class="event-lng">${markProp.geometry.coordinates[0]}</span>
-            <span class="event-lat">${markProp.geometry.coordinates[1]}</span>
-            <a class="fav-btn">Add to Favourite</a>
-          </div>`;
+         <div class="pop-up">
+           <h1 class="event-name">${markProp.properties.eventName}</h1>
+           <img src="${markProp.properties.eventImage}" class="event-img">
+           <p class="event-place-name">${markProp.properties.eventPlaceName}</p>
+           <span class="event-date">${markProp.properties.eventDate}</span>
+           <span class="event-time">${markProp.properties.eventTime}</span>
+           <p class="event-address">${markProp.properties.eventAddress}</p>
+           <span class="event-price">${Math.floor(Math.random() * 60) + 20}€</span>
+           <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
+           <br>
+           <br>
+           <a class="fav-btn"><i class="material-icons">favorite</i></a>
+           <span class="event-id invisible">${markProp.properties.eventId}</span>
+           <span class="event-lng invisible">${markProp.geometry.coordinates[0]}</span>
+           <span class="event-lat invisible">${markProp.geometry.coordinates[1]}</span>
+         </div>`;
         };
 
         // *********
