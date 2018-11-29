@@ -1,18 +1,17 @@
 @font-face {
-  font-family: 'Lato-Ligth';
+  font-family: "Lato-Ligth";
   src: url(/fonts/Lato/Lato-Light.ttf);
 }
 
 @font-face {
-  font-family: 'Lato-Bold';
+  font-family: "Lato-Bold";
   src: url(/fonts/Lato/Lato-Bold.ttf);
 }
 
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lato-Light";
-
+  font-family: "Lato-Ligth";
 }
 
 a {
@@ -33,7 +32,6 @@ nav .brand-logo {
   color: black;
   font-size: 1.5rem;
 }
-
 
 .form-container {
   height: 100vh;
@@ -65,18 +63,24 @@ nav .brand-logo {
   text-align: center;
   display: flex;
   justify-content: center;
-
 }
 
 /*calendar styles*/
-.datepicker-date-display{
-  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+.datepicker-date-display {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(57, 207, 163),
+    rgb(249, 147, 106)
+  );
   background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
   opacity: 0.85;
-
 }
-.is-selected{
-  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+.is-selected {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(57, 207, 163),
+    rgb(249, 147, 106)
+  );
   background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
   opacity: 0.85;
 }
@@ -85,11 +89,11 @@ nav .brand-logo {
 /* span.active{
   color:red;
 } */
-input[type=range]:before{
-background: red;
+input[type="range"]:before {
+  background: red;
 }
-input[type=range]+.thumb{
-  background-color:red
+input[type="range"] + .thumb {
+  background-color: red;
 }
 
 /* MAP STYLES */
@@ -99,7 +103,7 @@ input[type=range]+.thumb{
 }
 
 .marker {
-  background-image: url('/images/mapbox-icon.png');
+  background-image: url("/images/mapbox-icon.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -121,50 +125,58 @@ input[type=range]+.thumb{
 /* .mapboxgl-popup-content h3{
   font-size: 2rem;
 } */
-.pop-up{
+.pop-up {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.pop-up h1{
+.pop-up h1 {
   font-size: 2rem;
 }
-.pop-up p{
+.pop-up p {
   font-size: 1.5rem;
 }
 .coordinates {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   position: absolute;
   bottom: 10px;
   left: 10px;
-  padding:5px 10px;
+  padding: 5px 10px;
   margin: 0;
   font-size: 11px;
   line-height: 18px;
   border-radius: 3px;
   display: none;
 }
+/* Map for each events */
+ #mymap{
+  width: 100%;
+  height: 70%;
+}
 
 /* CARD EVENTS STYLE */
 
-.cards-container{
+.cards-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin-left: 22vw;
 }
 
-.card-container{
+.card-container {
   width: 450px;
   margin: 30px;
 }
-.sidenav{
+.sidenav {
   width: 22vw;
 }
+#btn-prueba {
+  right: 5px;
+  position: absolute;
+}
 
-
-.event-img{
-  height:150px;
-  width:auto;
+.event-img {
+  height: 150px;
+  width: auto;
 }
 
 /* FORM STYLES */
@@ -181,7 +193,7 @@ button:focus {
   color: rgba(255, 255, 255, 0.65);
 }
 
-::-webkit-input-placeholder .input-line:focus+::input-placeholder {
+::-webkit-input-placeholder .input-line:focus + ::input-placeholder {
   color: #fff;
 }
 
@@ -189,12 +201,12 @@ button:focus {
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
   cursor: pointer;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
 
 .highlight:hover {
   color: #fff;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
 
 .spacing {
@@ -213,8 +225,8 @@ button:focus {
 .input-line:focus {
   outline: none;
   border-color: #fff;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .ghost-round {
@@ -231,8 +243,8 @@ button:focus {
   line-height: 2.5em;
   margin-top: auto;
   margin-bottom: 25px;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-round {
@@ -251,16 +263,15 @@ button:focus {
   line-height: 2.5em;
   margin-top: auto;
   margin-bottom: 25px;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
-
 
 .ghost-round:hover {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .input-line {
@@ -274,16 +285,16 @@ button:focus {
   font-size: 19px;
   font-size: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.65);
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition: all 5000s ease-in-out 0s !important;
-    transition-property: background-color, color !important;
+  transition: all 5000s ease-in-out 0s !important;
+  transition-property: background-color, color !important;
 }
 
 .full-width {
@@ -368,7 +379,11 @@ input:-webkit-autofill:active {
 }
 
 .overlay {
-  background: -webkit-linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(57, 207, 163),
+    rgb(249, 147, 106)
+  );
   background: linear-gradient(45deg, rgb(57, 207, 163), rgb(249, 147, 106));
   opacity: 0.85;
   filter: alpha(opacity=85);
@@ -377,7 +392,6 @@ input:-webkit-autofill:active {
   width: 360px;
   z-index: 1;
 }
-
 
 @media (max-width: 500px) {
   .window {
@@ -391,7 +405,7 @@ input:-webkit-autofill:active {
   }
 }
 
-input[type=range]+.thumb {
+input[type="range"] + .thumb {
   background-color: #39cfa4;
 }
 
