@@ -180,6 +180,15 @@ input[type=range]::-ms-thumb {
   height: 150px;
   width: auto;
 }
+.information{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.information span{
+  height: 50px;
+  font-weight: bold;
+}
 .buy-or-delete{
   display: flex;
   justify-content: space-between;
@@ -188,6 +197,10 @@ input[type=range]::-ms-thumb {
   color:red;
   cursor: pointer;
 
+}
+
+.buy-event-link{
+  color:#6acda7; 
 }
 /* FORM STYLES */
 

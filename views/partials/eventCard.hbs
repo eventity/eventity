@@ -5,15 +5,21 @@
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">{{name}}<i class="material-icons right">more_vert</i></span>
-      <span>Place: {{placeName}}</span>
-      <span>Date: {{date}}</span>
-      <span>Time: {{time}}</span>
-      <p class="buy-or-delete"><a href="{{url}}">BUY TICKET ONLINE</a>  <span><a href="/events/delete/{{_id}}" class="delete-event-link">DELETE</a> </span></p>
-     
+
+      <p class="buy-or-delete"><a class="buy-event-link" href="{{url}}">BUY TICKET ONLINE</a> 
+      <span>
+        <a href="/events/delete/{{_id}}"
+            class="delete-event-link">DELETE</a> 
+            </span></p>
+
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      <p class="information"> 
+        <span>Place: {{placeName}}</span>
+        <span>Date: {{date}}</span>
+        <span>Time: {{time}}</span>
+        </p>
     </div>
   </div>
 </div>

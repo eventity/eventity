@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generteHtml = function (markProp) {
           return `
           <div class="pop-up">
-            <h1 class="event-name">Event: ${markProp.properties.eventName}</h1>
+            <h1 class="event-name">${markProp.properties.eventName}</h1>
             <label>Place:</label><p class="event-place-name">${markProp.properties.eventPlaceName}</p>
             <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
             <span class="event-price">${markProp.properties.eventPrice}€</span>
