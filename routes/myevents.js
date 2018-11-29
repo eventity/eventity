@@ -17,5 +17,19 @@ router.get('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
     });
 });
 
+router.get('/delete/:id', ensureLogin.ensureLoggedIn(),(req,res,next)=>{
+
+  const eventId= req.params.id;
+  Myevents.findByIdAndRemove({_id:eventId})
+  .then(()=>{
+    res.redirect('/events/myevents')
+  })
+  .catch((error) => {
+    console.log(`Error deleting events ${error}`);
+  });
+  console.log(eventId);
+
+})
+
 
 module.exports = router;

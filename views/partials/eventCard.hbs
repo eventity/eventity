@@ -8,7 +8,8 @@
       <span>Place: {{placeName}}</span>
       <span>Date: {{date}}</span>
       <span>Time: {{time}}</span>
-      <p class="buy-or-delete"><a href="{{url}}">BUY TICKET ONLINE</a>  <span><a class="delete-event-link">DELETE</a> </span></p>
+      {{_id}}
+      <p class="buy-or-delete"><a href="{{url}}">BUY TICKET ONLINE</a>  <span><a href="/events/delete/{{_id}}" class="delete-event-link">DELETE</a> </span></p>
      
     </div>
     <div class="card-reveal">

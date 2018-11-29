@@ -181,6 +181,7 @@ input[type=range]::-ms-thumb {
 }
 .delete-event-link{
   color:red;
+  cursor: pointer;
 
 }
 /* FORM STYLES */
