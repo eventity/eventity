@@ -147,6 +147,7 @@ input[type=range]::-ms-thumb {
 .fav-btn{
   /* margin-left: 92px; */
   color:#6acda7;
+  cursor: pointer;
 }
 .fav-text{
   color:#6acda7;
@@ -183,7 +184,8 @@ input[type=range]::-ms-thumb {
   height: 15vw;
 }
 #title-card{
-  font-size: 18px!important
+  font-size: 18px!important;
+ 
 }
 #image-card{
   height: 253px;
@@ -191,6 +193,25 @@ input[type=range]::-ms-thumb {
   border-top-right-radius: 7px;
 }
 
+.card-title{
+  font-weight: bold;
+}
+.btn-round-card{
+
+  text-align: center;
+  width: 35%;
+  cursor: pointer;
+  background-color: #6acda7;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 25px;
+  color: rgba(255, 255, 255);
+  font-size: 1rem;
+  font-weight: 300;
+  padding:1.5%;
+}
+a.btn-round-card-a{
+ color:white;
+}
 /* CARD EVENTS STYLE */
 .card{
   border-radius: 7px;
@@ -226,7 +247,7 @@ input[type=range]::-ms-thumb {
 .information {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 }
 
 .information span {

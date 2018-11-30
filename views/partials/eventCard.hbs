@@ -7,7 +7,6 @@
       <span id="title-card" class="card-title activator grey-text text-darken-4">{{name}}<i class="material-icons right">more_vert</i></span>
 
       <p class="buy-or-delete"><a class="buy-event-link" href="{{url}}">BUY TICKET ONLINE</a> 
-      <p>{{price}}</p>
       <span>
         <a href="/events/delete/{{_id}}"
             class="delete-event-link">DELETE</a> 
@@ -17,11 +16,15 @@
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
       <p class="information"> 
-        <span>Place: {{placeName}}</span>
-        <span>Date: {{date}}</span>
-        <span>Time: {{time}}</span>
-        <span>Address: {{address}}</span>
+        <span><i class="material-icons">place</i> <span>Place: {{placeName}}</span></span>
+        <span><i class="material-icons">date_range</i> Date: {{date}}</span>
+        <span><i class="material-icons">timer</i> Time: {{time}}</span>
+        <span><i class="material-icons">directions</i> Address: {{address}}</span>
+        <span><i class="material-icons">attach_money</i> Price: {{price}}</span>
+        
+        <button class="btn-round-card"><a class="btn-round-card-a" href="{{url}}">BUY IT NOW!</a></button>
         </p>
     </div>
+    
   </div>
 </div>
