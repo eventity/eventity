@@ -37,9 +37,10 @@ nav .brand-logo {
 
 #logo {
   height: 45px;
-  margin: 6px 20px;
+  margin: 8px 20px;
 }
-#logo-text{
+
+#logo-text {
   color: Black;
   margin: 67px;
 }
@@ -140,11 +141,13 @@ input[type=range]::-ms-thumb {
 .pop-up {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.event-url{
+
+.event-url {
   margin-left: 30px;
-  color:#6acda7;
+  color: #6acda7;
 }
-.fav-btn{
+
+.fav-btn {
   /* margin-left: 92px; */
   color:#6acda7;
   cursor: pointer;
@@ -153,17 +156,21 @@ input[type=range]::-ms-thumb {
   color:#6acda7;
 }
 
+.fav-text {
+  color: #6acda7;
+}
 
 .pop-up h1 {
   font-size: 1.3rem;
-  font-family:'Lato-bold';
+  font-family: 'Lato-bold';
 }
 
 .event-place-name {
   font-size: 1.2rem;
-  font-family:'Lato-bold';
+  font-family: 'Lato-bold';
 
 }
+
 
 .coordinates {
   background: rgba(0, 0, 0, 0.5);
@@ -187,7 +194,8 @@ input[type=range]::-ms-thumb {
   font-size: 18px!important;
  
 }
-#image-card{
+
+#image-card {
   height: 253px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
@@ -214,7 +222,7 @@ a.btn-round-card-a{
  color:white;
 }
 /* CARD EVENTS STYLE */
-.card{
+.card {
   border-radius: 7px;
 }
 
