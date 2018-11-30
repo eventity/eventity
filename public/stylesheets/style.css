@@ -36,7 +36,7 @@ nav .brand-logo {
 }
 
 #logo {
-  height: 50px;
+  height: 45px;
   margin: 6px 20px;
 }
 #logo-text{
@@ -142,13 +142,15 @@ input[type=range]::-ms-thumb {
 }
 .event-url{
   margin-left: 30px;
+  color:#6acda7;
 }
 .fav-btn{
-  margin: 0px 100px;
+  /* margin-left: 92px; */
+  color:#6acda7;
 }
-/* .fav-btn:link{
- color:gray;
-} */
+.fav-text{
+  color:#6acda7;
+}
 
 
 .pop-up h1 {

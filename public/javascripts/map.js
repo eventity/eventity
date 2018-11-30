@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
            <a class="event-url" href="${markProp.properties.eventUrl}">BUY</a>
            <br>
            <br>
-           <a class="fav-btn"><i class="material-icons">favorite</i></a>
+           <span class="fav-text">Add Favourite event</span>
+           <p class="fav-btn"><i class="material-icons">favorite</i></p>
            <span class="event-id invisible">${markProp.properties.eventId}</span>
            <span class="event-lng invisible">${markProp.geometry.coordinates[0]}</span>
            <span class="event-lat invisible">${markProp.geometry.coordinates[1]}</span>
@@ -270,18 +271,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get values from pop up cause we dont have DOM element to click till popup is shown
   $('body').on('click', '.fav-btn', (e) => {
-    console.log($(e.currentTarget).parent().find('.event-adress')[0]);
+    console.log($(e.currentTarget).parent().find('.event-price')[0]);
     const eventName = $(e.currentTarget)
       .parent()
-      .find('.event-name')[0]
-      .innerHTML;
+      .find('.event-name')[0].innerHTML;
     const eventPlaceName = $(e.currentTarget)
       .parent()
-      .find('.event-place-name')[0]
-      .innerHTML;
+      .find('.event-place-name')[0].innerHTML;
     const eventUrl = $(e.currentTarget)
       .parent()
       .find('.event-url')[0].getAttribute('href');
+    const eventPrice = $(e.currentTarget)
+      .parent()
+      .find('.event-price')[0].innerHTML;
     const eventDate = $(e.currentTarget)
       .parent()
       .find('.event-date')[0].innerHTML;
@@ -314,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eventName: `${eventName}`,
         eventPlaceName: `${eventPlaceName}`,
         eventUrl: `${eventUrl}`,
+        eventPrice: `${eventPrice}`,
         eventDate: `${eventDate}`,
         eventTime: `${eventTime}`,
         eventImg: `${eventImg}`,
