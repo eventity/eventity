@@ -5,24 +5,23 @@
     </a>
     <span id="logo-text">EVENTITY</span>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      {{!-- <li> <a href="/auth/login">Login</a></li> --}}
-      <li> <a href="/events/myevents" >My Events</a></li>
+      <li> <a href="/events/myevents">My Events</a></li>
       <li> <a href="/auth/logout">Logout</a></li>
     </ul>
   </div>
 </nav>
 <form action="" method="POST" id="form-map-search">
   <div>
-    <span for="key-value">Topic</span>
-    <input type="text"  id="key-value" value="Rock">
+    <span for="key-value">Event type</span>
+    <input type="text" id="key-value" value="Rock" class="autocomplete">
   </div>
   <div>
     <span for="start-date">Start Date</span>
-    <input type="text"    id="start-date" class="datepicker">
+    <input type="text" id="start-date" class="datepicker">
   </div>
   <div>
     <span for="end-date">End Date</span>
-    <input type="text"  name="end-date" id="end-date" class="datepicker">
+    <input type="text" name="end-date" id="end-date" class="datepicker">
   </div>
   <div>
     <p class="choose">Radius</p>
