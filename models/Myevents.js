@@ -8,6 +8,7 @@ const myeventsSchema = new Schema(
     name: String,
     image: String,
     url: String,
+    price:String,
     date:String,
     time:String,
     address: String,

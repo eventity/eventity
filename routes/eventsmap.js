@@ -83,12 +83,13 @@ function convertToGeoJSON(arr) {
 
 
 router.post('/myevents', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  console.log(req.body);
+  console.log('FORMAOIDFBASLIJBLDHSBVÑDFI', req.body);
   const newEvent = new Myevents({
     ticketMasterId: req.body.eventId,
     name: req.body.eventName,
     image: req.body.eventImg,
     url: req.body.eventUrl,
+    price:req.body.eventPrice,
     date:req.body.eventDate,
     address:req.body.eventAddress,
     time: req.body.eventTime,
