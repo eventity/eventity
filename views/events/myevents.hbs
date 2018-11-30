@@ -11,15 +11,16 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img id="user-bg" src="/images/user-bg.jpg">
+          <img id="user-bg" src="/images/user-bg.png">
         </div>
-        <a href="#user"><img class="circle" src="/images/user.png"></a>
-        <a href="#name"><span class="white-text name">{{user.username}}</span></a>
-        <a href="#email"><span class="white-text email">{{user.email}}</span></a>
+        <a href="#user"><img class="circle" src="/images/profile-image.png"></a>
+        <a href="#name"><span class="white-text name"></span></a>
+        <a href="#email"><span class="white-text email"></span></a>
       </div>
     </li>
-    <li><a href="#!"><i class="material-icons">favorite</i>You can see your favorite events</a></li>
-    <li><a href="https://www.ticketmaster.es/">My panel</a></li>
+    <li><a href="#!"><i class="material-icons">favorite</i>Hi {{user.username}}</a><span></span></li>
+    <li><a href="">{{user.email}}</a></li>
+    <li><a href="#!">My panel</a></li>
     <li>
       <div class="divider"></div>
     </li>

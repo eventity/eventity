@@ -51,7 +51,7 @@ nav .brand-logo {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url(/images/bg-bw.jpg);
+  background-image: url(/images/bg-bw-low.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -185,10 +185,14 @@ input[type=range]::-ms-thumb {
 }
 #image-card{
   height: 253px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 
-
 /* CARD EVENTS STYLE */
+.card{
+  border-radius: 7px;
+}
 
 .cards-container {
   display: flex;
